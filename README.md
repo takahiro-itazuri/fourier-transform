@@ -5,7 +5,7 @@ Details of each file are shown below.
 ### FT Class (in "ft.js")
 In this class, DFT (Discrete Fourier Transform) and FFT (Fast Fourier Transform) are implemented. Furthermore, visualization method also be implemented (2017/08/25).
 
-#### Constructor
+#### <u>Constructor</u>
 
 ```js
 function FT(nsample, f , type)
@@ -27,7 +27,7 @@ It returns an object for Fourier Tranform.
   </tr>
 </table>
 
-#### DFT
+#### <u>DFT</u>
 
 ```js
 function dft(data)
@@ -42,7 +42,7 @@ It returns a spectrum object calculated by DFT, which has "Re" and "Im" property
   </tr>
 </table>
 
-#### FFT
+#### <u>FFT</u>
 
 ```js
 function fft(data)
@@ -57,7 +57,7 @@ It returns a spectrum object calculated by FFT, which has "Re" and "Im" property
   </tr>
 </table>
 
-#### visualization
+#### <u>Visualization</u>
 
 ```js
 function drawSpec(spec)
