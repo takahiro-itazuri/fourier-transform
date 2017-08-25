@@ -57,6 +57,23 @@ It returns a spectrum object calculated by FFT, which has "Re" and "Im" property
   </tr>
 </table>
 
+#### visualization
+
+```js
+function drawSpec(spec)
+```
+
+It shows line chart of spectrum using CanvasJS (https://www.google.co.jp/search?rlz=1C1NDCM_jaJP728JP728&q=canvasJS+credit&spell=1&sa=X&ved=0ahUKEwiCvdKUxPHVAhVGTLwKHSA2DK0QvwUIJSgA&biw=799&bih=684).
+
+<table>
+  <tr>
+    <th>arguments</th><th>type</th><th>description</th>
+  </tr>
+  <tr>
+    <td>spec</td><td>Array (Complex Object)</td><td>a spectrum obtained by dft or fft function.</td>
+  </tr>
+</table>
+
 ## Dependencies
 For basic calculation of complex number (such as addition, subtraction, multiplication, division, and exponential), we use "Complex Class" in file "complex.js".
 
