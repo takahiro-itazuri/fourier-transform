@@ -1,6 +1,14 @@
-function FT(nsample, type) {
+function FT(nsample, f, type) {
     // the number of samples
-    this.nsample = Number(nsample) || 64;
+    this.nsample = Number(nsample);
+    this.f = Number(f);
+    
+    // frequencies
+    this.freq = new Array(this.nsample);
+    var f0 = this.f / this.nsample;
+    for(var i = 0; i < this.nsample; ++i) {
+        this.freq[i] = i * f0;
+    }
 
     // angles
     if (type == 'dft') {
@@ -48,6 +56,7 @@ function FT(nsample, type) {
         return spec;
     }
 
+    // fast fourier transform
     this.fft = function(data) {
         if (!(data.length == this.nsample)) { return undefined; }
 
@@ -106,24 +115,52 @@ function FT(nsample, type) {
 
         return spec;
     }
+
+    this.drawSpec = function(spec) {
+        var re = [], im = [];
+        for (var i = 0; i < this.nsample; ++i) {
+            re.push({x: this.freq[i], y: Number(spec[i].Re.toFixed(2))});
+            im.push({x: this.freq[i], y: Number(spec[i].Im.toFixed(2))});
+        }
+
+        var chart = new CanvasJS.Chart("container",
+        {
+            data:[
+                {
+                    type: 'line',
+                    dataPoints: re,
+                    markerType: 'none',
+                    lineThickness: 1
+                },
+                {
+                    type: 'line',
+                    dataPoints: im,
+                    markerType: 'none',
+                    lineThickness: 1
+                }
+            ] 
+        });
+        chart.render();
+    }
 }
 
 
 
 window.onload = function() {
-    var freq = 128;
-    var nsample = 64;
+    var f = 1024;
+    var nsample = 1024;
     var vec = new Array(nsample);
     for (var i = 0; i < nsample; ++i) {
-        vec[i] = Math.sin(2 * Math.PI * i / nsample);
+        vec[i] = 2 * Math.random() - 1;
     }
 
     // FFT
-    var fft = new FT(nsample, 'fft');
+    var fft = new FT(nsample, f, 'fft');
     var fft_spec = fft.fft(vec);
+    fft.drawSpec(fft_spec);
 
     // DFT
-    var dft = new FT(nsample, 'dft');
+    var dft = new FT(nsample, f, 'dft');
     var dft_spec = dft.dft(vec);
 
     var str = '<table border="1" cellspacing="0" cellpadding="10"><tr align="center">';
