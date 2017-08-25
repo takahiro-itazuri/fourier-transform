@@ -74,6 +74,7 @@ It shows line chart of spectrum using CanvasJS (https://www.google.co.jp/search?
   </tr>
 </table>
 
+
 ## Dependencies
 For basic calculation of complex number (such as addition, subtraction, multiplication, division, and exponential), we use "Complex Class" in file "complex.js".
 
